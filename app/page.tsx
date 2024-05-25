@@ -6,7 +6,7 @@ import { FlowComponent } from "@/components/Graph";
 
 async function fetchGraphData() {
   try {
-    const response = await fetch("http://localhost:3000/api/graph");
+    const response = await fetch("https://momentum-task.vercel.app/api/graph");
     const data = await response.json();
     return data?.graph;
   } catch (err) {
@@ -15,14 +15,14 @@ async function fetchGraphData() {
 }
 
 async function fetchDependencies() {
-  const res = await fetch("http://localhost:3000/api/dependencies");
+  const res = await fetch("https://momentum-task.vercel.app/api/dependencies");
   const data = await res.json();
   return data.dependencies;
 }
 
 async function fetchConfiguration(name: string) {
   const res = await fetch(
-    "http://localhost:3000/api/configuration?flow=" + name
+    "https://momentum-task.vercel.app/api/configuration?flow=" + name
   );
   const data = await res.json();
   return data?.configuration;
