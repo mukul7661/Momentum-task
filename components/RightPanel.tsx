@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Info from "@/components/assets/Group 57.png";
-import Group65 from "@/components/assets/Group 65.png";
+import { useState } from "react";
 import InputWithText from "./InputWithText";
-import Image from "next/image";
+import { InfoIcon, YellowGoIcon } from "./icons";
+import Checkbox from "./Checkbox";
 
 interface DependenciesProps {
   name: string;
@@ -12,9 +11,20 @@ interface DependenciesProps {
 }
 
 function Dependency({ name, onChange }: DependenciesProps) {
+  const [checked, setChecked] = useState(false);
+
   return (
     <div className="flex space-x-2 items-center">
-      <input
+      <Checkbox
+        label="Check me"
+        checked={checked}
+        onChange={(e) => {
+          setChecked(e.target.checked);
+          onChange(e);
+        }}
+      />
+
+      {/* <input
         value={name}
         onChange={onChange}
         type="checkbox"
@@ -22,16 +32,9 @@ function Dependency({ name, onChange }: DependenciesProps) {
           width: "15px",
           height: "15px",
         }}
-      />
+      /> */}
       <div className="text-[15px]">{name}</div>
-      <Image
-        width={13}
-        height={13}
-        alt="Polygon 2"
-        style={{ marginLeft: "auto" }}
-        className="w-[13px] h-[13px]"
-        src={Group65}
-      />
+      <YellowGoIcon />
     </div>
   );
 }
@@ -92,45 +95,37 @@ export default function RightPanel({
   return (
     <>
       <div
-        className="w-[500px] mt-[55px] bg-[#363636] text-white p-4 space-y-8 no-scrollbar overflow-y-auto "
+        className="w-[450px] mt-[55px] bg-[#363636] text-white p-4 pb-0 no-scrollbar overflow-y-auto text-md"
         style={{
           maxHeight: "calc(100vh - 55px)",
-          borderTop: "1px solid #B7B7B7",
+          borderTop: "1px solid #505050",
         }}
       >
-        <div className="text-lg font-bold">{name}</div>
-        <div className="flex-col space-y-1">
+        <div className="text-[20px] font-bold">{name}</div>
+        <div className="flex-col space-y-1 mt-5">
           <div className="flex space-x-2 items-center">
-            <Image
-              height={12}
-              width={12}
-              alt="Info"
-              src={Info}
-              className="w-[12px] h-[12px]"
-            />
+            <InfoIcon />
             <div>Last 2 commits scanned</div>
           </div>
           <div className="flex space-x-2 items-center">
-            <Image
-              width={12}
-              height={12}
-              alt={"Info"}
-              src={Info}
-              className="w-[12px] h-[12px]"
-            />
+            <InfoIcon />
+
             <div>5 entry points identified</div>
           </div>
         </div>
 
-        <div className="flex-col space-y-2">
-          <div>Selected Flow</div>
+        <div className="flex-col space-y-2  mt-4">
+          <div>Selected flow</div>
           <div className="select-wrapper">
-            <select className="custom-select border-2 border-[#D9D9D9] bg-[#363636] w-full p-2 rounded-md">
-              <option>POST /carts/&#123;cart_id&#125;</option>
+            <select className="custom-select border-[1px] border-[#D9D9D9] bg-[#363636] w-full px-[10px] py-[6px] rounded-[3px]">
+              <option className="text-md">
+                POST /carts/&#123;cart_id&#125;
+              </option>
             </select>
           </div>
         </div>
-        <div className="flex-col space-y-2">
+
+        <div className="flex-col space-y-2 mt-5">
           <div className="text-md ">Dependencies</div>
           <div className="text-sm text-[#B7B7B7]">
             Select the ones you want to mock
@@ -146,7 +141,7 @@ export default function RightPanel({
           </div>
         </div>
 
-        <div className="flex-col space-y-2 mt-20">
+        <div className="flex-col space-y-3 mt-10">
           <div className="text-md ">Databases</div>
           <div className="text-sm text-[#B7B7B7]">
             Select if you want to mock databases{" "}
@@ -171,7 +166,7 @@ export default function RightPanel({
           </div>
         </div>
 
-        <div className="flex-col space-y-4" style={{ marginBottom: "70px" }}>
+        <div className="flex-col space-y-4 mt-8 mb-6">
           <div className="text-md ">Database Configurations</div>
 
           {/* <div className="flex space-x-2 items-center"> */}
@@ -195,25 +190,25 @@ export default function RightPanel({
           />
           {/* </div> */}
         </div>
-      </div>
 
-      <div
-        className="fixed bottom-0 right-0 w-[380px] bg-[#363636] text-white h-[53px] justify-center"
-        style={{
-          zIndex: "1000",
-          borderTop: "1px solid #B7B7B7",
-          borderLeft: "1px solid #B7B7B7",
-        }}
-      >
-        <button
-          className="bg-[#009FF9] text-white text-[14px] px-5 py-[6px] rounded-[4px] fixed bottom-2 right-2"
+        <div
+          className="sticky bottom-0 right-0 w-[calc(100%+2rem)] bg-[#363636] text-white h-[53px] justify-center ml-[-16px]"
           style={{
-            float: "right",
+            zIndex: "1000",
+            borderTop: "1px solid #595858",
+            borderLeft: "1px solid #595858",
           }}
-          onClick={handleSaveConfiguration}
         >
-          Save
-        </button>
+          <button
+            className="bg-[#009FF9] text-white text-[14px] px-5 py-[6px] rounded-[4px] fixed bottom-2 right-2"
+            style={{
+              float: "right",
+            }}
+            onClick={handleSaveConfiguration}
+          >
+            Save
+          </button>
+        </div>
       </div>
     </>
   );

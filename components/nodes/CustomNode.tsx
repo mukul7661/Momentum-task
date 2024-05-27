@@ -1,7 +1,6 @@
 import type { NodeProps } from "reactflow";
 import { Handle, Position } from "reactflow";
-import Group25 from "@/components/assets/Group 25.png";
-import Image from "next/image";
+import { WhiteGoIcon } from "../icons";
 
 export type CustomNodeData = {
   fileName: string;
@@ -25,13 +24,7 @@ export function CustomNode({ xPos, yPos, data }: NodeProps<CustomNodeData>) {
       >
         <div>{data.fileName}</div>
 
-        <Image
-          width={13}
-          height={13}
-          alt="Polygon"
-          src={Group25}
-          className="w-[13px] h-[13px]"
-        />
+        <WhiteGoIcon />
       </div>
       <div
         className="border-[#FFAD62] border-2 p-2 text-[14px] text-white overflow-hidden h-[130px] w-[350px] font-medium flex-col space-y-2 justify-center items-center"

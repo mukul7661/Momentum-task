@@ -1,10 +1,6 @@
-import logo from "@/components/assets/logo.png";
-import hamburger from "@/components/assets/Hamburger.png";
-import Restart from "@/components/assets/Frame.png";
-import Repo from "@/components/assets/versions-svgrepo-com 1.png";
-import Git from "@/components/assets/git-icon-logo-svgrepo-com 1.png";
-import Profile from "@/components/assets/Screenshot 2022-08-22 at 5.44 1 (1).png";
+import Profile from "../public/Profile.svg";
 import Image from "next/image";
+import { RepoIcon, GitIcon, Logo, HamburgerIcon, RestartIcon } from "./icons";
 
 export default function Navbar() {
   return (
@@ -15,55 +11,19 @@ export default function Navbar() {
           zIndex: "100",
         }}
       >
-        <div className="flex-col space-y-8">
-          <Image
-            width={160}
-            height={160}
-            alt="Polygon"
-            // className="fixed top-4 left-2"
-            className="mt-4 m-auto"
-            src={logo}
-          ></Image>
-          <Image
-            width={30}
-            height={30}
-            alt="Polygon"
-            // className="fixed top-20 left-2"
-            className="m-auto"
-            src={hamburger}
-          ></Image>
-          <Image
-            width={30}
-            height={30}
-            alt="Polygon"
-            //  className="fixed top-40 left-3"
-            className="m-auto"
-            src={Restart}
-          ></Image>
-          <Image
-            width={30}
-            height={30}
-            alt="Polygon"
-            // className="fixed top-60 left-3"
-            className="m-auto"
-            src={Repo}
-          ></Image>
-          <Image
-            width={30}
-            height={30}
-            alt="Polygon"
-            // className="fixed top-60 left-3"
-            className="m-auto"
-            src={Git}
-          ></Image>
+        <div className="flex-col space-y-8 mt-4">
+          <Logo />
+          <HamburgerIcon />
+          <RestartIcon />
+          <RepoIcon />
+          <GitIcon />
         </div>
 
         <Image
-          width={30}
-          height={30}
+          width={35}
+          height={33.57}
           alt="Polygon"
           className="fixed bottom-6 left-[10px]"
-          // className="m-auto"
           src={Profile}
         ></Image>
       </div>

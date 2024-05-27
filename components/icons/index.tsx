@@ -1,0 +1,9 @@
+export { default as RepoIcon } from "./RepoIcon";
+export { default as GitIcon } from "./GitIcon";
+export { default as YellowGoIcon } from "./YellowGoIcon";
+export { default as WhiteGoIcon } from "./WhiteGoIcon";
+export { default as AddIcon } from "./AddIcon";
+export { default as InfoIcon } from "./InfoIcon";
+export { default as Logo } from "./Logo";
+export { default as HamburgerIcon } from "./HamburgerIcon";
+export { default as RestartIcon } from "./RestartIcon";

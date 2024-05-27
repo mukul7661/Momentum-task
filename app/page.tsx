@@ -26,9 +26,6 @@ async function fetchConfiguration(name: string) {
   );
   const data = await res.json();
   return data?.configuration;
-  // setUsername(data?.configuration?.db_config?.username);
-  // setPassword(data?.configuration?.db_config?.password);
-  // setEntitiesToMock(data?.configuration?.entities_to_mock);
 }
 
 const App = async () => {

@@ -12,21 +12,18 @@ import ReactFlow, {
 import "reactflow/dist/style.css";
 import * as d3 from "d3";
 import { nodeTypes } from "@/components/nodes";
+import { AddIcon } from "./icons";
 
 const transformData = (data: any): { nodes: any[]; edges: any[] } => {
-  // Create a d3 hierarchy from the data
   const root = d3.hierarchy(data);
 
-  // Create a tree layout with specified size
   const treeLayout = d3.tree().nodeSize([250, 500]);
   treeLayout(root);
 
-  // Convert d3 hierarchy nodes to React Flow nodes
   const nodes = root.descendants().map((d, index) => {
     const a = d.data.function.split("/");
 
     return {
-      // id: d.data.function,
       id: d.data.id,
       type: "custom-node",
       data: {
@@ -40,20 +37,18 @@ const transformData = (data: any): { nodes: any[]; edges: any[] } => {
     };
   });
 
-  // Convert d3 hierarchy links to React Flow edges
   const edges = root.links().map((link) => ({
-    id: `${link.source.data.id}-${link.target.data.id}`, // Ensure the edge ID is unique
-    // type: "custom",
+    id: `${link.source.data.id}-${link.target.data.id}`,
     type: "step",
-    source: link.source.data.id, // Source should be the parent's function ID
-    target: link.target.data.id, // Target should be the child's function ID
+    source: link.source.data.id,
+    target: link.target.data.id,
     markerEnd: { type: MarkerType.Arrow },
   }));
 
   return { nodes, edges };
 };
 
-const defaultViewport: Viewport = { x: 0, y: 15, zoom: 3 };
+const defaultViewport: Viewport = { x: 0, y: 15, zoom: 0.8 };
 
 interface FlowComponentProps {
   graphData: {
@@ -83,7 +78,7 @@ export const FlowComponent = ({ graphData }: FlowComponentProps) => {
           nodeTypes={nodeTypes}
           nodes={elements.nodes}
           edges={elements.edges}
-          fitView
+          // fitView
           defaultViewport={defaultViewport}
         >
           <Background
@@ -95,8 +90,8 @@ export const FlowComponent = ({ graphData }: FlowComponentProps) => {
           />
           <Controls />
         </ReactFlow>
-        <button className="bg-[#F27400] text-white fixed bottom-20 left-20 p-[6px] rounded-[4px] text-[14px]">
-          + Add Methods
+        <button className="bg-[#F27400] flex items-center space-x-1 justify-center text-center text-white fixed bottom-20 left-24 p-[6px] rounded-[4px] text-[14px]">
+          <AddIcon /> <div> Add Methods</div>
         </button>
       </div>
     </ReactFlowProvider>

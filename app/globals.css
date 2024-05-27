@@ -1,33 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  @apply font-mulish;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.custom-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: #363636;
+  color: white;
+  border: 1px solid #d9d9d9;
+  width: 100%;
+  padding: 4px 20px;
+  border-radius: 5px;
+  padding-right: 40px;
+}
+
+.select-wrapper::after {
+  content: "";
+  position: absolute;
+  right: 12px;
+  top: calc(50% - 5px);
+  width: 15px;
+  height: 11px;
+  background-image: url("/DownArrow.svg");
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+.react-flow__edge-path {
+  stroke: #7c7c7c;
+  stroke-width: 2;
+}
+
+.marker-arrow {
+  fill: #e71212;
+}
+
+/* Checkbox.css */
+.checkbox-container {
+  display: inline-block;
+  position: relative;
+  padding-left: 18px;
+  padding-bottom: 15px;
+  cursor: pointer;
+  font-size: 18px;
+  user-select: none;
+}
+
+.checkbox-container input {
+  display: none;
+}
+
+.checkbox-container .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 16px;
+  width: 16px;
+  background-color: #363636;
+  border-radius: 3px;
+  border: 1px solid #646464;
+}
+
+.checkbox-container input:checked + .checkmark {
+  background-color: #009ff9;
+}
+
+.checkbox-container .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.checkbox-container input:checked + .checkmark:after {
+  display: block;
+}
+
+.checkbox-container .checkmark:after {
+  left: 4.8px;
+  top: 2px;
+  width: 5px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 1px 1px 0;
+  transform: rotate(30deg);
 }
